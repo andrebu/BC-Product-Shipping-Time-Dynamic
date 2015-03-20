@@ -1,8 +1,15 @@
+    $('<style type="text/css">\
+			.current {\
+				color: #000;\
+			}\
+			</style>')
+        .appendTo('head');
+
 var timeHTML = '<div id="shippingTimeContainer"><span class="green">If you order in the next <span id="dynamicShippingTime">' +
 				'<span class="current" id="cur_hour"></span>' +
-				'<span class="colon">:</span>' +
+				'<span class="current colon">:</span>' +
 				'<span class="current" id="cur_min"></span>' +
-				'<span class="colon">:</span>' +
+				'<span class="current colon">:</span>' +
 				'<span class="current" id="cur_sec"></span>' +
 				'</span> your order will ship today!</span></div>';
 
