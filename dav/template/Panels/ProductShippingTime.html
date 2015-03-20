@@ -27,6 +27,8 @@
 		var hour =  now.getHours();
 		var min =  now.getMinutes();
 		var sec =  now.getSeconds();
+		var firstShipment  = new Date(Date.UTC(2013, 8, 30, 12, 0, 0));
+		var diff  = date.getTime()/1000 - now.getTime()/1000;
 		
 		if (hour > 12) {
 			hour = hour - 12;
