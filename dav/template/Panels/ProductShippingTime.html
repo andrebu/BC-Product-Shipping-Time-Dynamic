@@ -1,0 +1,37 @@
+var timeHTML = '<div id="shippingTimeContainer"><span class="green">If you order in the next <span id="dynamicShippingTime">' +
+				'<span class="current" id="cur_hour"></span>' +
+				'<span class="colon">:</span>' +
+				'<span class="current" id="cur_min"></span>' +
+				'<span class="colon">:</span>' +
+				'<span class="current" id="cur_sec"></span>' +
+				'</span> your order will ship today!</span></div>';
+
+	function time() {
+		var now = new Date();
+		var hour =  now.getHours();
+		var min =  now.getMinutes();
+		var sec =  now.getSeconds();
+		
+		if (hour > 12) {
+			hour = hour - 12;
+		};
+
+		hour = formatTime(hour);
+		min = formatTime(min);
+		sec = formatTime(sec);
+
+		$('#cur_hour').text(hour);
+		$('#cur_min').text(min);
+		$('#cur_sec').text(sec);
+
+		t=setTimeout(function(){time()}, 500);
+	}
+	function formatTime(i) {
+		if (i < 10) {
+			i = '0' + i;
+		}
+		return i;
+	}
+
+$('.FreeShippingHeading').after(timeHTML);
+time();
