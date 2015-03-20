@@ -5,13 +5,13 @@
 			</style>')
         .appendTo('head');
 
-var timeHTML = '<div id="shippingTimeContainer"><span class="green">If you order in the next <span id="dynamicShippingTime">' +
-				'<span class="current" id="cur_hour"></span>' +
-				'<span class="current colon">:</span>' +
-				'<span class="current" id="cur_min"></span>' +
-				'<span class="current colon">:</span>' +
-				'<span class="current" id="cur_sec"></span>' +
-				'</span> your order will ship today!</span></div>';
+	var timeHTML = '<div id="shippingTimeContainer"><span class="green">If you order in the next <span id="dynamicShippingTime">' +
+					'<span class="current" id="cur_hour"></span>' +
+					'<span class="current colon">:</span>' +
+					'<span class="current" id="cur_min"></span>' +
+					'<span class="current colon">:</span>' +
+					'<span class="current" id="cur_sec"></span>' +
+					'</span> your order will ship today!</span></div>';
 
 	function time() {
 		var now = new Date();
@@ -40,5 +40,5 @@ var timeHTML = '<div id="shippingTimeContainer"><span class="green">If you order
 		return i;
 	}
 
-$('.FreeShippingHeading').after(timeHTML);
-time();
+	$('.FreeShippingHeading').after(timeHTML);
+	time();
