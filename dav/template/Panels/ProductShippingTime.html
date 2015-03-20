@@ -28,7 +28,17 @@
 		var min =  now.getMinutes();
 		var sec =  now.getSeconds();
 		var firstShipment  = new Date(Date.UTC(2013, 8, 30, 12, 0, 0));
-		var diff  = date.getTime()/1000 - now.getTime()/1000;
+		var diff  = now.getTime()/1000 - firstShipment.getTime()/1000;
+		console.log(diff);
+//		var hourDiff =  diff.getHours();
+//		var minDiff =  diff.getMinutes();
+//		var secDiff =  diff.getSeconds();
+		var hour2 =  firstShipment.getHours();
+		var min2 =  firstShipment.getMinutes();
+		var sec2 =  firstShipment.getSeconds();
+		var hour =  firstShipment.getHours() - now.getHours();
+		var min =  firstShipment.getMinutes() - now.getMinutes();
+		var sec =  firstShipment.getSeconds() - now.getSeconds();
 		
 		if (hour > 12) {
 			hour = hour - 12;
@@ -44,6 +54,14 @@
 
 		t=setTimeout(function(){time()}, 500);
 	}
+
+/*
+	var clock = $('.clock').FlipClip(diff, { // <-- DID YOU MEAN FlipClock
+	    clockFace: 'DailyCounter',
+	    countdown: true
+	});
+*/
+
 	function formatTime(i) {
 		if (i < 10) {
 			i = '0' + i;
