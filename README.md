@@ -42,7 +42,10 @@ BigCommerce Dynamic Shipping Time Counter -- a countdown telling a customer how 
 
 
 ##Resources
-- []()
+- [moment.js moment is undefined](http://stackoverflow.com/questions/24520828/moment-js-moment-is-undefined)
+- [Find user location using jQuery/JS (without google geolocation api)?](http://stackoverflow.com/questions/14177647/find-user-location-using-jquery-js-without-google-geolocation-api)
+- [freegeoip.net](https://freegeoip.net/)
+- [Getting a customer's current location using JavaScript](https://docs.shopify.com/manual/configuration/store-customization/page-specific/store-wide/get-a-visitors-location)
 - []()
 - []()
 - []()
