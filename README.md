@@ -4,7 +4,22 @@ BigCommerce Dynamic Shipping Time Counter -- a countdown telling a customer how 
 
 ## Installation
 
-1. 
+1. Reference to **%%Panel.ProductShippingTime%%** is at bottom of product.html (the one at the top).
+2. **<div id="shipping-time" style="display:none;"></div>** line was added to **Snippets/ProductAddToCart.html**
+
+```HTML
+...
+                    <li>NO Tax, except for NJ</li>
+                    <li>Ordered Before 2PM? Ships Same Day</li>
+                    <li>All Orders Shipped Within 24 hours</li>
+                </ul>
+            </div>
+            <div id="shipping-time" style="display:none;"></div>
+        </div>
+...
+```
+
+
 
 
 
