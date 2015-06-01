@@ -1,16 +1,6 @@
 <script type="text/javascript">
 	//Shipping Time Product Function 
 
-var userloc = [];
-jQuery.ajax( { 
-	url: '//freegeoip.net/json/', 
-	type: 'POST', 
-	dataType: 'jsonp',
-	success: function(location) {
-		var userloc = [location.country_name, location.city, location.region_name];
-	}
-});
-
 //! moment.js
 //! version : 2.10.2
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
@@ -34,8 +24,8 @@ Nd.preparse=Zb,Nd.postformat=Zb,Nd._relativeTime=Md,Nd.relativeTime=$b,Nd.pastFu
 	        'Colorado': 3,
 	        'Connnecticut': 3,
 	        'Delaware': 3,
-	        'Florida': 2,
-	        'Georgia': 2,
+	        'Florida': 3,
+	        'Georgia': 3,
 	        'Hawaii': 3,
 	        'Idaho': 3,
 	        'Illinois': 3,
@@ -55,9 +45,9 @@ Nd.preparse=Zb,Nd.postformat=Zb,Nd._relativeTime=Md,Nd.relativeTime=$b,Nd.pastFu
 	        'Nebraska': 3,
 	        'Nevada': 3,
 	        'New Hampshire': 3,
-	        'New Jersey': 3,
+	        'New Jersey': 2,
 	        'New Mexico': 3,
-	        'New York': 3,
+	        'New York': 2,
 	        'North Carolina': 3,
 	        'North Dakota': 3,
 	        'Ohio': 3,
@@ -79,6 +69,16 @@ Nd.preparse=Zb,Nd.postformat=Zb,Nd._relativeTime=Md,Nd.relativeTime=$b,Nd.pastFu
 	    }
 	    
 	};
-  // Shipping Time
-  $('#shipping-time').shipTime(shipconfig);
+
+	userloc = [];
+	$.ajax( { 
+		url: '//freegeoip.net/json/', 
+		type: 'POST', 
+		dataType: 'jsonp',
+		success: function(location) {
+			userloc = [location.country_name, location.city, location.region_name];
+		}
+	}).done(function() {
+		$('#shipping-time').shipTime(shipconfig);
+	});
 </script>
