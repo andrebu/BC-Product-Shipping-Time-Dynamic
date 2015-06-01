@@ -46,6 +46,8 @@ BigCommerce Dynamic Shipping Time Counter -- a countdown telling a customer how 
 - [Find user location using jQuery/JS (without google geolocation api)?](http://stackoverflow.com/questions/14177647/find-user-location-using-jquery-js-without-google-geolocation-api)
 - [freegeoip.net](https://freegeoip.net/)
 - [Getting a customer's current location using JavaScript](https://docs.shopify.com/manual/configuration/store-customization/page-specific/store-wide/get-a-visitors-location)
+- [Locale detection with Moment.js](http://stackoverflow.com/questions/25725882/locale-detection-with-moment-js)
+- [Shopify API call to know the location/country of the user](http://stackoverflow.com/questions/13042377/shopify-api-call-to-know-the-location-country-of-the-user)
 - []()
 - []()
 - []()
