@@ -1,0 +1,113 @@
+!
+function(e) {
+	function i(i, n) {
+		this.element = i, this.options = e.extend({}, t, n);
+		try {
+			if (void 0 === moment || void 0 === e) throw Error("please include jquery & moment.js")
+		} catch (o) {
+			console.log(o)
+		}
+		this.displayShipTime()
+	}
+	var t = {
+		timezone: "-0500",
+		deadline: {
+			hour: 9,
+			minute: 0
+		},
+		shipMethodName: "Free Shipping",
+		noShipping: "12/24, 12/25",
+		leadtime: {
+			Alabama: 3,
+			Alaska: 4,
+			Arizona: 3,
+			Arkansas: 3,
+			California: 4,
+			Colorado: 3,
+			Connnecticut: 3,
+			Delaware: 3,
+			Florida: 2,
+			Georgia: 2,
+			Hawaii: 5,
+			Idaho: 3,
+			Illinois: 3,
+			Indiana: 4,
+			Iowa: 4,
+			Kansas: 4,
+			Kentucky: 3,
+			Louisiana: 3,
+			Maine: 3,
+			Maryland: 3,
+			Massachusetts: 3,
+			Michigan: 4,
+			Minnesota: 3,
+			Mississippi: 3,
+			Missouri: 4,
+			Montana: 4,
+			Nebraska: 4,
+			Nevada: 3,
+			"New Hampshire": 3,
+			"New Jersey": 3,
+			"New Mexico": 4,
+			"New York": 3,
+			"North Carolina": 3,
+			"North Dakota": 4,
+			Ohio: 3,
+			Oklahoma: 4,
+			Oregon: 4,
+			Pennsylvania: 3,
+			"Rhode Island": 3,
+			"South Carolina": 3,
+			"South Dakota": 4,
+			Tennessee: 3,
+			Texas: 4,
+			Utah: 4,
+			Vermont: 3,
+			Virginia: 3,
+			Washington: 3,
+			"West Virginia": 3,
+			Wisconsin: 3,
+			Wyoming: 4
+		}
+	};
+	i.prototype.isWeekday = function(e) {
+		return 0 !== e.day() && 6 !== e.day() ? !0 : !1
+	}, i.prototype.isExcluded = function(e) {
+		var i = this.options.noShipping.split(",");
+		void 0 == e._isAMomentObject && (e = e(e, "MM-DD-YYYY"));
+		for (var t = 0; t < i.length; t++) if (e.utcOffset("-0500").format("M/D") == i[t]) return !0;
+		return !1
+	}, i.prototype.shipDay = function(e) {
+		return moment().utcOffset(this.options.timezone).isSame(e, "d") ? "Today" : e.format("dddd")
+	}, i.prototype.shippingDeadline = function(e, i) {
+		for (var t = moment().utcOffset(this.options.timezone).hour(e).minute(i).second(0); this.isExcluded(t);) t.add(24, "h");
+		return moment().utcOffset(this.options.timezone).hour() >= t.hour() && this.isWeekday(moment().utcOffset(this.options.timezone)) && t.add(24, "h"), this.isWeekday(t) ? t : 0 === t.day() ? t.add(24, "h") : t.add(48, "h")
+	}, i.prototype.timeUntilDeadline = function(e) {
+		for (var i = Math.abs(moment().utcOffset(this.options.timezone).diff(e, "m")), t = 0; i >= 60; t++) i -= 60;
+		return {
+			hours: t,
+			minutes: i
+		}
+	}, i.prototype.projectedDeliveryDate = function(e, i) {
+		for (var t = e.add(this.options.leadtime[i], "day"); this.isExcluded(t);) t.add("h", 24);
+		return this.isWeekday(t) ? t : 0 === t.day() ? t.add("h", 24) : t.add("h", 48)
+	}, i.prototype.displayShipTime = function() {
+		var i = this,
+			t = this.shippingDeadline(this.options.deadline.hour, this.options.deadline.minute),
+			n = this.timeUntilDeadline(t);
+		e(this.element).append('<span class="order">Order within <strong class="time-left green">' + n.hours + " hrs " + n.minutes + ' mins</strong> to ship by <span class="ship-day">' + this.shipDay(t) + '</span>.</span><div class="clear"></div>'), this.options.leadtime && ("United States" == userloc[0] && null !== userloc[2] ? e(i.element).append('<strong class="est-delivery">Estimated Delivery:</strong> ' + i.projectedDeliveryDate(t, userloc[2]).format("dddd, MMMM Do") + '<br><span class="deliver-time"> to <strong>' + userloc[2] + '</strong> via <strong class="green">' + i.options.shipMethodName + "</strong></span>") : e("#shipping-est i.sooner").remove())
+	}, e.fn.shipTime = function(e) {
+		return this.each(function() {
+			new i(this, e)
+		})
+	}
+}(jQuery);
+
+<div class="a-section a-spacing-none">
+    <span class="a-text-bold">
+        Want it Saturday, June 6?
+    </span>
+    Order within <b><span id="ftCountdown" class="a-color-success a-color-available ftCountdownClass">2 hrs 36 mins</span></b> and choose <b>Two-Day Shipping</b> at checkout.</div>
+    
+Estimated Delivery Date: June 10 - 15 when you choose Standard at checkout.
+Want it Saturday, June 6? Order within 1 hr 44 mins and choose Two-Day Shipping at checkout.    
