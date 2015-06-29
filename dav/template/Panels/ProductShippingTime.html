@@ -10,14 +10,69 @@
 Nd.preparse=Zb,Nd.postformat=Zb,Nd._relativeTime=Md,Nd.relativeTime=$b,Nd.pastFuture=_b,Nd.set=ac,Nd.months=R,Nd._months=fd,Nd.monthsShort=S,Nd._monthsShort=gd,Nd.monthsParse=T,Nd.week=ha,Nd._week=nd,Nd.firstDayOfYear=ja,Nd.firstDayOfWeek=ia,Nd.weekdays=Fb,Nd._weekdays=xd,Nd.weekdaysMin=Hb,Nd._weekdaysMin=zd,Nd.weekdaysShort=Gb,Nd._weekdaysShort=yd,Nd.weekdaysParse=Ib,Nd.isPM=Ob,Nd._meridiemParse=Ad,Nd.meridiem=Pb,u("en",{ordinalParse:/\d{1,2}(th|st|nd|rd)/,ordinal:function(a){var b=a%10,c=1===o(a%100/10)?"th":1===b?"st":2===b?"nd":3===b?"rd":"th";return a+c}}),a.lang=Z("moment.lang is deprecated. Use moment.locale instead.",u),a.langData=Z("moment.langData is deprecated. Use moment.localeData instead.",w);var Od=Math.abs,Pd=rc("ms"),Qd=rc("s"),Rd=rc("m"),Sd=rc("h"),Td=rc("d"),Ud=rc("w"),Vd=rc("M"),Wd=rc("y"),Xd=tc("milliseconds"),Yd=tc("seconds"),Zd=tc("minutes"),$d=tc("hours"),_d=tc("days"),ae=tc("months"),be=tc("years"),ce=Math.round,de={s:45,m:45,h:22,d:26,M:11},ee=Math.abs,fe=Da.prototype;fe.abs=ic,fe.add=kc,fe.subtract=lc,fe.as=pc,fe.asMilliseconds=Pd,fe.asSeconds=Qd,fe.asMinutes=Rd,fe.asHours=Sd,fe.asDays=Td,fe.asWeeks=Ud,fe.asMonths=Vd,fe.asYears=Wd,fe.valueOf=qc,fe._bubble=mc,fe.get=sc,fe.milliseconds=Xd,fe.seconds=Yd,fe.minutes=Zd,fe.hours=$d,fe.days=_d,fe.weeks=uc,fe.months=ae,fe.years=be,fe.humanize=yc,fe.toISOString=zc,fe.toString=zc,fe.toJSON=zc,fe.locale=mb,fe.localeData=nb,fe.toIsoString=Z("toIsoString() is deprecated. Please use toISOString() instead (notice the capitals)",zc),fe.lang=vd,F("X",0,0,"unix"),F("x",0,0,"valueOf"),K("x",Uc),K("X",Wc),N("X",function(a,b,c){c._d=new Date(1e3*parseFloat(a,10))}),N("x",function(a,b,c){c._d=new Date(o(a))}),a.version="2.10.2",b(za),a.fn=Gd,a.min=Ba,a.max=Ca,a.utc=i,a.unix=Tb,a.months=dc,a.isDate=e,a.locale=u,a.invalid=k,a.duration=Ua,a.isMoment=n,a.weekdays=fc,a.parseZone=Ub,a.localeData=w,a.isDuration=Ea,a.monthsShort=ec,a.weekdaysMin=hc,a.defineLocale=v,a.weekdaysShort=gc,a.normalizeUnits=y,a.relativeTimeThreshold=xc;var ge=a;return ge});
 
 !function(e){function i(i,n){this.element=i,this.options=e.extend({},t,n);try{if(void 0===moment||void 0===e)throw Error("please include jquery & moment.js")}catch(o){console.log(o)}this.displayShipTime()}var t={timezone:"-0500",deadline:{hour:13,minute:0},shipMethodName:"Free Shipping",noShipping:"12/24, 12/25",leadtime:{Alabama:3,Alaska:4,Arizona:3,Arkansas:3,California:4,Colorado:3,Connnecticut:3,Delaware:3,Florida:2,Georgia:2,Hawaii:5,Idaho:3,Illinois:3,Indiana:4,Iowa:4,Kansas:4,Kentucky:3,Louisiana:3,Maine:3,Maryland:3,Massachusetts:3,Michigan:4,Minnesota:3,Mississippi:3,Missouri:4,Montana:4,Nebraska:4,Nevada:3,"New Hampshire":3,"New Jersey":3,"New Mexico":4,"New York":3,"North Carolina":3,"North Dakota":4,Ohio:3,Oklahoma:4,Oregon:4,Pennsylvania:3,"Rhode Island":3,"South Carolina":3,"South Dakota":4,Tennessee:3,Texas:4,Utah:4,Vermont:3,Virginia:3,Washington:3,"West Virginia":3,Wisconsin:3,Wyoming:4}};i.prototype.isWeekday=function(e){return 0!==e.day()&&6!==e.day()?!0:!1},i.prototype.isExcluded=function(e){var i=this.options.noShipping.split(",");void 0==e._isAMomentObject&&(e=e(e,"MM-DD-YYYY"));for(var t=0;t<i.length;t++)if(e.utcOffset("-0500").format("M/D")==i[t])return!0;return!1},i.prototype.shipDay=function(e){return moment().utcOffset(this.options.timezone).isSame(e,"d")?"Today":e.format("dddd")},i.prototype.shippingDeadline=function(e,i){for(var t=moment().utcOffset(this.options.timezone).hour(e).minute(i).second(0);this.isExcluded(t);)t.add(24,"h");return moment().utcOffset(this.options.timezone).hour()>=t.hour()&&this.isWeekday(moment().utcOffset(this.options.timezone))&&t.add(24,"h"),this.isWeekday(t)?t:0===t.day()?t.add(24,"h"):t.add(48,"h")},i.prototype.timeUntilDeadline=function(e){for(var i=Math.abs(moment().utcOffset(this.options.timezone).diff(e,"m")),t=0;i>=60;t++)i-=60;return{hours:t,minutes:i}},i.prototype.projectedDeliveryDate=function(e,i){for(var t=e.add(this.options.leadtime[i],"day");this.isExcluded(t);)t.add("h",24);return this.isWeekday(t)?t:0===t.day()?t.add("h",24):t.add("h",48)},i.prototype.displayShipTime=function(){var i=this,t=this.shippingDeadline(this.options.deadline.hour,this.options.deadline.minute),n=this.timeUntilDeadline(t);
-	e(this.element).append('<div style="display:none;"><span class="order">Place your order within <strong class="time-left green">'+n.hours+" hrs "+n.minutes+' mins</strong> and get it on <strong class="ship-day">'+this.shipDay(t)+', ' + i.projectedDeliveryDate(t, userloc[2]).format("dddd, MMMM Do") + '</strong> with <strong class="up-case green">' + i.options.shipMethodName + '</strong>.</span><div class="clear"></div></div>'),
+
+	//e(this.element).append('<div><span class="free-shipping-time">Place your order within <strong class="time-left green">' + n.hours + " hrs " + n.minutes + ' mins</strong> and get it on <strong class="ship-day">' + i.projectedDeliveryDate(t, userloc[2]).format("dddd, MMMM Do") + '</strong> with <strong class="up-case green">' + i.options.shipMethodName + '</strong>.</span><div class="clear"></div></div>'),
+
+	//this.options.twoDayShip&&("United States"==userloc[0]&&null!==userloc[2]?e(i.element).append('<div><span class="two-day-shipping-time">Want it by <strong class="est-delivery">' + i.projectedDeliveryDate(t,userloc[2]).format("dddd, MMMM Do") + '</strong>? Choose <strong>2 Day Shipping at checkout.</strong></span></div>'):e("#shipping-est i.sooner").remove())},e.fn.shipTime=function(e){return this.each(function(){new i(this,e)})}}(jQuery);
+
 	e(this.element).append('<span class="order">Order within <strong class="time-left green">'+n.hours+" hrs "+n.minutes+' mins</strong> to ship by <span class="ship-day">'+this.shipDay(t)+'</span>.</span><div class="clear"></div>'),
+
 	this.options.leadtime&&("United States"==userloc[0]&&null!==userloc[2]?e(i.element).append('<strong class="est-delivery">Estimated Delivery:</strong> '+i.projectedDeliveryDate(t,userloc[2]).format("dddd, MMMM Do")+'<br><span class="deliver-time"> to <strong>'+userloc[2]+'</strong> via <strong class="green">'+i.options.shipMethodName+"</strong></span>"):e("#shipping-est i.sooner").remove())},e.fn.shipTime=function(e){return this.each(function(){new i(this,e)})}}(jQuery);
 
-
-
     var shipconfig = {
-  	    
+	    
+ 		twoDayShip: {
+			'Alabama': 2,
+			'Alaska': 2,
+			'Arizona': 2,
+			'Arkansas': 2,
+			'California': 2,
+			'Colorado': 2,
+			'Connnecticut': 2,
+			'Delaware': 2,
+			'Florida': 2,
+			'Georgia': 2,
+			'Hawaii': 2,
+			'Idaho': 2,
+			'Illinois': 2,
+			'Indiana': 2,
+			'Iowa': 2,
+			'Kansas': 2,
+			'Kentucky': 2,
+			'Louisiana': 2,
+			'Maine': 2,
+			'Maryland': 2,
+			'Massachusetts': 2,
+			'Michigan': 2,
+			'Minnesota': 2,
+			'Mississippi': 2,
+			'Missouri': 2,
+			'Montana': 2,
+			'Nebraska': 2,
+			'Nevada': 2,
+			'New Hampshire': 2,
+			'New Jersey': 2,
+			'New Mexico': 2,
+			'New York': 2,
+			'North Carolina': 2,
+			'North Dakota': 2,
+			'Ohio': 2,
+			'Oklahoma': 2,
+			'Oregon': 2,
+			'Pennsylvania': 2,
+			'Rhode Island': 2,
+			'South Carolina': 2,
+			'South Dakota': 2,
+			'Tennessee': 2,
+			'Texas': 2,
+			'Utah': 2,
+			'Vermont': 2,
+			'Virginia': 2,
+			'Washington': 2,
+			'West Virginia': 2,
+			'Wisconsin': 2,
+			'Wyoming': 2
+		}, 	    
 		leadtime: {
 			'Alabama': 4,
 			'Alaska': 4,
@@ -48,7 +103,7 @@ Nd.preparse=Zb,Nd.postformat=Zb,Nd._relativeTime=Md,Nd.relativeTime=$b,Nd.pastFu
 			'Nebraska': 4,
 			'Nevada': 4,
 			'New Hampshire': 3,
-			'New Jersey': 1,
+			'New Jersey': 2,
 			'New Mexico': 4,
 			'New York': 2,
 			'North Carolina': 3,
