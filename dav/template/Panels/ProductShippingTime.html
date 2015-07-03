@@ -19,7 +19,6 @@ Nd.preparse=Zb,Nd.postformat=Zb,Nd._relativeTime=Md,Nd.relativeTime=$b,Nd.pastFu
 	this.options.leadtime&&("United States"==userloc[0]&&null!==userloc[2]?e(i.element).append('<div><span class="two-day-shipping-time">Want it by <strong class="est-delivery">' + i.projectedDeliveryDate(origDeadline, 'twoDays').format("dddd, MMMM Do") + '</strong>? Choose <strong>2 Day Shipping at checkout.</strong></span></div>'):e("#shipping-est i.sooner").remove())},e.fn.shipTime=function(e){return this.each(function(){new i(this,e)})}}(jQuery);
 
     var shipconfig = {
-	    
 		leadtime: {
 			'zeroDays': 0,
 			'oneDay': 1,
@@ -53,7 +52,7 @@ Nd.preparse=Zb,Nd.postformat=Zb,Nd._relativeTime=Md,Nd.relativeTime=$b,Nd.pastFu
 			'Nebraska': 4,
 			'Nevada': 4,
 			'New Hampshire': 3,
-			'New Jersey': 2,
+			'New Jersey': 1,
 			'New Mexico': 4,
 			'New York': 2,
 			'North Carolina': 3,
@@ -74,19 +73,35 @@ Nd.preparse=Zb,Nd.postformat=Zb,Nd._relativeTime=Md,Nd.relativeTime=$b,Nd.pastFu
 			'West Virginia': 3,
 			'Wisconsin': 4,
 			'Wyoming': 4
-		}
-	    
+        }
+
 	};
 
 	userloc = [];
-	$.ajax( { 
-		url: '//freegeoip.net/json/', 
-		type: 'POST', 
-		dataType: 'jsonp',
-		success: function(location) {
-			userloc = [location.country_name, location.city, location.region_name];
-		}
-	}).done(function() {
-		$('#shipping-time').shipTime(shipconfig);
-	});
+	function getViaFreeGeoIp() {
+		$.ajax( { 
+			url: '//freegeoip.net/json/', 
+			type: 'POST', 
+			dataType: 'jsonp',
+			success: function(location) {
+				userloc = [location.country_name, location.city, location.region_name];
+			}
+		}).done(function() {
+			$('#shipping-time').shipTime(shipconfig);
+		});
+	}
+	//getViaFreeGeoIp();
+	
+	userloc = [];
+	function getViaTelize() {
+		$.getJSON("http://www.telize.com/geoip",
+			function(location) {
+				console.log(location);
+				userloc = [location.country, location.city, location.region];
+				$('#shipping-time').shipTime(shipconfig);
+			}
+		);
+	}
+	getViaTelize();
+	
 </script>
