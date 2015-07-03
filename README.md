@@ -49,7 +49,7 @@ BigCommerce Dynamic Shipping Time Counter -- a countdown telling a customer how 
 - [Locale detection with Moment.js](http://stackoverflow.com/questions/25725882/locale-detection-with-moment-js)
 - [Shopify API call to know the location/country of the user](http://stackoverflow.com/questions/13042377/shopify-api-call-to-know-the-location-country-of-the-user)
 - [GitHub: jquery.shiptime](https://github.com/danecando/jquery.shiptime)
-- []()
+- [is there another site like freegeoip.net](http://stackoverflow.com/questions/20882227/is-there-another-site-like-freegeoip-net)
 - []()
 
 
