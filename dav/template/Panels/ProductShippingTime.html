@@ -96,7 +96,6 @@ Nd.preparse=Zb,Nd.postformat=Zb,Nd._relativeTime=Md,Nd.relativeTime=$b,Nd.pastFu
 	function getViaTelize() {
 		$.getJSON("http://www.telize.com/geoip",
 			function(location) {
-				console.log(location);
 				userloc = [location.country, location.city, location.region];
 				$('#shipping-time').shipTime(shipconfig);
 			}
