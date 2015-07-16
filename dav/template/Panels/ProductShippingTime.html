@@ -16,7 +16,7 @@ Nd.preparse=Zb,Nd.postformat=Zb,Nd._relativeTime=Md,Nd.relativeTime=$b,Nd.pastFu
 
 	e(this.element).append('<div><span class="free-shipping-time">Place your order within <strong class="time-left green">' + n.hours + " hrs " + n.minutes + ' mins</strong> and get it on <strong class="ship-day">' + i.projectedDeliveryDate(t, userloc[2]).format("dddd, MMMM Do") + '</strong> with <strong class="up-case green">' + i.options.shipMethodName + '</strong>.</span><div class="clear"></div></div>'),
 
-	this.options.leadtime&&("United States"==userloc[0]&&null!==userloc[2]?e(i.element).append('<div><span class="two-day-shipping-time">Want it by <strong class="est-delivery">' + i.projectedDeliveryDate(origDeadline, 'twoDays').format("dddd, MMMM Do") + '</strong>? Choose <strong>2 Day Shipping at checkout.</strong></span></div>'):e("#shipping-est i.sooner").remove())},e.fn.shipTime=function(e){return this.each(function(){new i(this,e)})}}(jQuery);
+	this.options.leadtime&&("United States"==userloc[0]&&userloc[2]?e(i.element).append('<div><span class="two-day-shipping-time">Want it by <strong class="est-delivery">' + i.projectedDeliveryDate(origDeadline, 'twoDays').format("dddd, MMMM Do") + '</strong>? Choose <strong>2 Day Shipping at checkout.</strong></span></div>'):e("#shipping-est i.sooner").remove())},e.fn.shipTime=function(e){return this.each(function(){new i(this,e)})}}(jQuery);
 
     var shipconfig = {
 		leadtime: {
