@@ -51,7 +51,7 @@ BigCommerce Dynamic Shipping Time Counter -- a countdown telling a customer how 
 - [GitHub: jquery.shiptime](https://github.com/danecando/jquery.shiptime)
 - [is there another site like freegeoip.net](http://stackoverflow.com/questions/20882227/is-there-another-site-like-freegeoip-net)
 - [How to expire a cookie in 30 minutes using jQuery?](http://stackoverflow.com/questions/1830246/how-to-expire-a-cookie-in-30-minutes-using-jquery)
-- []()
+- [jQuery cookie value is %5Bobject%20Object%5D](http://stackoverflow.com/questions/16355717/jquery-cookie-value-is-5bobject20object5d)
 - []()
 - []()
 - []()
