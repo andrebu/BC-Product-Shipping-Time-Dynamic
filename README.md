@@ -50,6 +50,10 @@ BigCommerce Dynamic Shipping Time Counter -- a countdown telling a customer how 
 - [Shopify API call to know the location/country of the user](http://stackoverflow.com/questions/13042377/shopify-api-call-to-know-the-location-country-of-the-user)
 - [GitHub: jquery.shiptime](https://github.com/danecando/jquery.shiptime)
 - [is there another site like freegeoip.net](http://stackoverflow.com/questions/20882227/is-there-another-site-like-freegeoip-net)
+- [How to expire a cookie in 30 minutes using jQuery?](http://stackoverflow.com/questions/1830246/how-to-expire-a-cookie-in-30-minutes-using-jquery)
+- []()
+- []()
+- []()
 - []()
 
 
