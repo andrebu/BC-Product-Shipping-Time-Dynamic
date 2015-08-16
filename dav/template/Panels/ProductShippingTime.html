@@ -11,6 +11,40 @@ Nd.preparse=Zb,Nd.postformat=Zb,Nd._relativeTime=Md,Nd.relativeTime=$b,Nd.pastFu
 
 !function(e){function i(i,n){this.element=i,this.options=e.extend({},t,n);try{if(void 0===moment||void 0===e)throw Error("please include jquery & moment.js")}catch(o){console.log(o)}this.displayShipTime()}var t={timezone:"-0500",deadline:{hour:13,minute:0},shipMethodName:"Free Shipping",noShipping:"12/24, 12/25",leadtime:{Alabama:3,Alaska:4,Arizona:3,Arkansas:3,California:4,Colorado:3,Connnecticut:3,Delaware:3,Florida:2,Georgia:2,Hawaii:5,Idaho:3,Illinois:3,Indiana:4,Iowa:4,Kansas:4,Kentucky:3,Louisiana:3,Maine:3,Maryland:3,Massachusetts:3,Michigan:4,Minnesota:3,Mississippi:3,Missouri:4,Montana:4,Nebraska:4,Nevada:3,"New Hampshire":3,"New Jersey":3,"New Mexico":4,"New York":3,"North Carolina":3,"North Dakota":4,Ohio:3,Oklahoma:4,Oregon:4,Pennsylvania:3,"Rhode Island":3,"South Carolina":3,"South Dakota":4,Tennessee:3,Texas:4,Utah:4,Vermont:3,Virginia:3,Washington:3,"West Virginia":3,Wisconsin:3,Wyoming:4}};i.prototype.isWeekday=function(e){return 0!==e.day()&&6!==e.day()?!0:!1},i.prototype.isExcluded=function(e){var i=this.options.noShipping.split(",");void 0==e._isAMomentObject&&(e=e(e,"MM-DD-YYYY"));for(var t=0;t<i.length;t++)if(e.utcOffset("-0500").format("M/D")==i[t])return!0;return!1},i.prototype.shipDay=function(e){return moment().utcOffset(this.options.timezone).isSame(e,"d")?"Today":e.format("dddd")},i.prototype.shippingDeadline=function(e,i){for(var t=moment().utcOffset(this.options.timezone).hour(e).minute(i).second(0);this.isExcluded(t);)t.add(24,"h");return moment().utcOffset(this.options.timezone).hour()>=t.hour()&&this.isWeekday(moment().utcOffset(this.options.timezone))&&t.add(24,"h"),this.isWeekday(t)?t:0===t.day()?t.add(24,"h"):t.add(48,"h")},i.prototype.timeUntilDeadline=function(e){for(var i=Math.abs(moment().utcOffset(this.options.timezone).diff(e,"m")),t=0;i>=60;t++)i-=60;return{hours:t,minutes:i}},i.prototype.projectedDeliveryDate=function(e,i){for(var t=e.add(this.options.leadtime[i],"day");this.isExcluded(t);)t.add("h",24);return this.isWeekday(t)?t:0===t.day()?t.add("h",24):t.add("h",48)},i.prototype.displayShipTime=function(){var i=this,t=this.shippingDeadline(this.options.deadline.hour,this.options.deadline.minute),origDeadline=this.shippingDeadline(this.options.deadline.hour,this.options.deadline.minute),n=this.timeUntilDeadline(t);
 
+
+
+//jquery.cookie.js
+(function(factory){if(typeof define==='function'&&define.amd){define(['jquery'],factory);}else if(typeof exports==='object'){module.exports=factory(require('jquery'));}else{factory(jQuery);}}(function($){var pluses=/\+/g;function encode(s){return config.raw?s:encodeURIComponent(s);}
+function decode(s){return config.raw?s:decodeURIComponent(s);}
+function stringifyCookieValue(value){return encode(config.json?JSON.stringify(value):String(value));}
+function parseCookieValue(s){if(s.indexOf('"')===0){s=s.slice(1,-1).replace(/\\"/g,'"').replace(/\\\\/g,'\\');}
+try{s=decodeURIComponent(s.replace(pluses,' '));return config.json?JSON.parse(s):s;}catch(e){}}
+function read(s,converter){var value=config.raw?s:parseCookieValue(s);return $.isFunction(converter)?converter(value):value;}
+var config=$.cookie=function(key,value,options){if(arguments.length>1&&!$.isFunction(value)){options=$.extend({},config.defaults,options);if(typeof options.expires==='number'){var days=options.expires,t=options.expires=new Date();t.setMilliseconds(t.getMilliseconds()+days*864e+5);}
+return(document.cookie=[encode(key),'=',stringifyCookieValue(value),options.expires?'; expires='+options.expires.toUTCString():'',options.path?'; path='+options.path:'',options.domain?'; domain='+options.domain:'',options.secure?'; secure':''].join(''));}
+var result=key?undefined:{},cookies=document.cookie?document.cookie.split('; '):[],i=0,l=cookies.length;for(;i<l;i++){var parts=cookies[i].split('='),name=decode(parts.shift()),cookie=parts.join('=');if(key===name){result=read(cookie,value);break;}
+if(!key&&(cookie=read(cookie))!==undefined){result[name]=cookie;}}
+return result;};config.defaults={};$.removeCookie=function(key,options){$.cookie(key,'',$.extend({},options,{expires:-1}));return!$.cookie(key);};}));
+
+function setShippingCookies() {
+	var oneDayShip = i.projectedDeliveryDate(origDeadline, 'oneDay').format("dddd, MMMM Do"),
+		twoDayShip = i.projectedDeliveryDate(origDeadline, 'twoDays').format("dddd, MMMM Do"),
+		threeDayShip = i.projectedDeliveryDate(origDeadline, 'threeDays').format("dddd, MMMM Do"),
+		fourDayShip = i.projectedDeliveryDate(origDeadline, 'fourDays').format("dddd, MMMM Do"),
+		fiveDayShip = i.projectedDeliveryDate(origDeadline, 'fiveDays').format("dddd, MMMM Do"),
+		sixDayShip = i.projectedDeliveryDate(origDeadline, 'sixDays').format("dddd, MMMM Do");
+	var cookieExpireDate = new Date();
+	var cookieExpireMinutes = 30;
+	cookieExpireDate.setTime(cookieExpireDate.getTime() + (cookieExpireMinutes * 60 * 1000));
+	$.cookie('oneDayShip', oneDayShip, { expires: cookieExpireDate });
+	$.cookie('twoDayShip', twoDayShip, { expires: cookieExpireDate });
+	$.cookie('threeDayShip', threeDayShip, { expires: cookieExpireDate });
+	$.cookie('fourDayShip', fourDayShip, { expires: cookieExpireDate });
+	$.cookie('fiveDayShip', fiveDayShip, { expires: cookieExpireDate });
+	$.cookie('sixDayShip', sixDayShip, { expires: cookieExpireDate });
+}
+setShippingCookies();
+
 // Add current time
 // Add the state to be delivered to
 
@@ -23,6 +57,10 @@ Nd.preparse=Zb,Nd.postformat=Zb,Nd._relativeTime=Md,Nd.relativeTime=$b,Nd.pastFu
 			'zeroDays': 0,
 			'oneDay': 1,
 			'twoDays': 2,
+			'threeDays': 3,
+			'fourDays': 4,
+			'fiveDays': 5,
+			'sixDays': 6,
 			'Alabama': 4,
 			'Alaska': 4,
 			'Arizona': 4,
