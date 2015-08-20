@@ -53,7 +53,7 @@ BigCommerce Dynamic Shipping Time Counter -- a countdown telling a customer how 
 - [How to expire a cookie in 30 minutes using jQuery?](http://stackoverflow.com/questions/1830246/how-to-expire-a-cookie-in-30-minutes-using-jquery)
 - [jQuery cookie value is %5Bobject%20Object%5D](http://stackoverflow.com/questions/16355717/jquery-cookie-value-is-5bobject20object5d)
 - [jQuery Cookie path](http://stackoverflow.com/questions/9326620/jquery-cookie-path)
-- []()
+- [What is the most efficient way to clone an object?](http://stackoverflow.com/questions/122102/what-is-the-most-efficient-way-to-clone-an-object)
 - []()
 - []()
 
