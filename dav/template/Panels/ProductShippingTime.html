@@ -25,16 +25,6 @@ if(!key&&(cookie=read(cookie))!==undefined){result[name]=cookie;}}
 return result;};config.defaults={};$.removeCookie=function(key,options){$.cookie(key,'',$.extend({},options,{expires:-1}));return!$.cookie(key);};}));
 
 function setShippingCookies() {
-	console.log(cookieTime);
-	console.log(cookieTime);
-/*
-	var oneDayShip = cookieTime.projectedDeliveryDate(origDeadline, 'oneDay').format("dddd, MMMM Do"),
-		twoDayShip = cookieTime.projectedDeliveryDate(origDeadline, 'twoDays').format("dddd, MMMM Do"),
-		threeDayShip = cookieTime.projectedDeliveryDate(origDeadline, 'threeDays').format("dddd, MMMM Do"),
-		fourDayShip = cookieTime.projectedDeliveryDate(origDeadline, 'fourDays').format("dddd, MMMM Do"),
-		fiveDayShip = cookieTime.projectedDeliveryDate(origDeadline, 'fiveDays').format("dddd, MMMM Do"),
-		sixDayShip = cookieTime.projectedDeliveryDate(origDeadline, 'sixDays').format("dddd, MMMM Do");
-*/
 	var oneDayShip = cookieTime.projectedDeliveryDate(cookieDeadline, 'oneDay').format("dddd, MMMM Do"),
 		twoDayShip = cookieTime.projectedDeliveryDate(cookieDeadline, 'oneDay').format("dddd, MMMM Do"),
 		threeDayShip = cookieTime.projectedDeliveryDate(cookieDeadline, 'oneDay').format("dddd, MMMM Do"),
@@ -43,16 +33,14 @@ function setShippingCookies() {
 		sixDayShip = cookieTime.projectedDeliveryDate(cookieDeadline, 'oneDay').format("dddd, MMMM Do");
 	var cookieExpireDate = new Date();
 	var cookieExpireMinutes = 30;
-	//cookieExpireDate.setTime(cookieExpireDate.getTime() + (cookieExpireMinutes * 60 * 1000));
-/*
+	cookieExpireDate.setTime(cookieExpireDate.getTime() + (cookieExpireMinutes * 60 * 1000));
 	$.cookie('oneDayShip', oneDayShip, { path: '/' }, { expires: cookieExpireDate });
 	$.cookie('twoDayShip', twoDayShip, { path: '/' }, { expires: cookieExpireDate });
 	$.cookie('threeDayShip', threeDayShip, { path: '/' }, { expires: cookieExpireDate });
 	$.cookie('fourDayShip', fourDayShip, { path: '/' }, { expires: cookieExpireDate });
 	$.cookie('fiveDayShip', fiveDayShip, { path: '/' }, { expires: cookieExpireDate });
 	$.cookie('sixDayShip', sixDayShip, { path: '/' }, { expires: cookieExpireDate });
-*/
-console.log(oneDayShip, twoDayShip, threeDayShip, fourDayShip, fiveDayShip, sixDayShip);
+	//console.log(oneDayShip, twoDayShip, threeDayShip, fourDayShip, fiveDayShip, sixDayShip);
 }
 setShippingCookies();
 
