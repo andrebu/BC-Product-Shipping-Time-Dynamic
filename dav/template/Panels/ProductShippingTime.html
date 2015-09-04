@@ -44,6 +44,13 @@ function setShippingCookies() {
 }
 setShippingCookies();
 
+function currentDateAndTime() {
+	var currentDateAndTime = new Date();
+	var formattedDateAndTime = currentDateAndTime.format("dddd, MMMM Do");
+	return formattedDateAndTime;
+}
+
+
 // Add current time
 // Add the state to be delivered to
 
@@ -134,6 +141,33 @@ setShippingCookies();
 		$.getJSON("http://www.telize.com/geoip",
 			function(location) {
 				userloc = [location.country, location.city, location.region];
+				var usersLocation = '' + userloc[1] + ', ' + userloc[2] + '';
+				$('.user-info').show();
+				$('.user-time span').html(moment().format('MMM Do YYYY, h:mm:ss a'));
+				function updateClock() {
+					var now = moment(),
+					second = now.seconds() * 6,
+					minute = now.minutes() * 6 + second / 60,
+					hour = ((now.hours() % 12) / 12) * 360 + 90 + minute / 12;
+					
+					$('#hour').css("transform", "rotate(" + hour + "deg)");
+					$('#minute').css("transform", "rotate(" + minute + "deg)");
+					$('#second').css("transform", "rotate(" + second + "deg)");
+				}
+				function snippetUpdate() {
+					$('.user-time span').html(moment().format('MMM Do YYYY, h:mm:ss a'));
+				}
+				function timedUpdate () {
+					updateClock();
+					snippetUpdate();
+					setTimeout(timedUpdate, 1000);
+				}
+				timedUpdate();
+				if (location.country == 'United States') {
+					$('.user-location span').html(usersLocation);
+				} else {
+					$('.user-location span').html(location.country);
+				}
 				$('#shipping-time').shipTime(shipconfig);
 			}
 		);
