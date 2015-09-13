@@ -36,7 +36,7 @@ BigCommerce Dynamic Shipping Time Counter -- a countdown telling a customer how 
 
 ##To Do
 
-1. 
+1. Add State shapes and Country flags to the "User Location" field: https://www.google.com/search?q=us+state+vector+icon+set&oq=us+state+vector+icon+set&aqs=chrome..69i57.1478j0j4&sourceid=chrome-mobile&espvd=1&ie=UTF-8
 
 ------------------------------------------------------------------------------------
 
