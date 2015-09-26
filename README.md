@@ -90,6 +90,7 @@ BigCommerce Dynamic Shipping Time Counter -- a countdown telling a customer how 
 * [BigCommerce Wholesale Price and Item Hide and Other Features](https://github.com/iamandrebulatov/BC-Wholesale-Price-and-Item-Hide)
 * [BigCommerce Sharing Savings Discount](https://github.com/iamandrebulatov/BC-Sharing-Savings-Discount)
 * [BigCommerce Tooltips](https://github.com/iamandrebulatov/BC-Tooltips)
+* [BigCommerce Order Shipment Tracking APIs ofr USPS, UPS and FedEx](https://github.com/iamandrebulatov/BC-Order-Shipping-Tracking)
 
 
 ------------------------------------------------------------------------------------
