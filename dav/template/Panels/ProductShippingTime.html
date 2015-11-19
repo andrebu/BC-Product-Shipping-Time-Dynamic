@@ -54,9 +54,11 @@ function currentDateAndTime() {
 // Add current time
 // Add the state to be delivered to
 
-	e(this.element).append('<div><span class="free-shipping-time">Place your order within <strong class="time-left green">' + n.hours + " hrs " + n.minutes + ' mins</strong> and get it on <strong class="ship-day">' + i.projectedDeliveryDate(t, userloc[2]).format("dddd, MMMM Do") + '</strong> with <strong class="up-case green">' + i.options.shipMethodName + '</strong>.</span><div class="clear"></div></div>'),
+	("United States"==userloc[0]&&userloc[2]?e(this.element).append('<div><span class="free-shipping-time">Place your order within <strong class="time-left green">' + n.hours + " hrs " + n.minutes + ' mins</strong> and get it on <strong class="ship-day">' + i.projectedDeliveryDate(t, userloc[2]).format("dddd, MMMM Do") + '</strong> with <strong class="up-case green">' + i.options.shipMethodName + '</strong>.</span><div class="clear"></div></div>'):e("#shipping-est").remove()),
 
-	this.options.leadtime&&("United States"==userloc[0]&&userloc[2]?e(i.element).append('<div><span class="two-day-shipping-time">Want it by <strong class="est-delivery">' + i.projectedDeliveryDate(origDeadline, 'twoDays').format("dddd, MMMM Do") + '</strong>? Choose <strong>2 Day Shipping at checkout.</strong></span></div>'):e("#shipping-est i.sooner").remove())},e.fn.shipTime=function(e){return this.each(function(){new i(this,e)})}}(jQuery);
+	this.options.leadtime&&("United States"==userloc[0]&&userloc[2]?e(i.element).append('<div><span class="two-day-shipping-time">Want it by <strong class="est-delivery">' + i.projectedDeliveryDate(origDeadline, 'twoDays').format("dddd, MMMM Do") + '</strong>? Choose <strong>2 Day Shipping at checkout.</strong></span></div>'):e(".FreeShippingContainer i.sooner").remove())},
+	
+	e.fn.shipTime=function(e){return this.each(function(){new i(this,e)})}}(jQuery);
 	
     var shipconfig = {
 		leadtime: {
@@ -120,26 +122,13 @@ function currentDateAndTime() {
         }
 
 	};
-
-	userloc = [];
-	function getViaFreeGeoIp() {
-		$.ajax( { 
-			url: '//freegeoip.net/json/', 
-			type: 'POST', 
-			dataType: 'jsonp',
-			success: function(location) {
-				userloc = [location.country_name, location.city, location.region_name];
-			}
-		}).done(function() {
-			$('#shipping-time').shipTime(shipconfig);
-		});
-	}
-	//getViaFreeGeoIp();
 	
 	userloc = [];
 	function getViaTelize() {
-		$.getJSON("http://www.telize.com/geoip",
+		//$.getJSON("http://www.telize.com/geoip",
+		$.getJSON("http://ipinfo.io",
 			function(location) {
+				console.log(location);
 				userloc = [location.country, location.city, location.region];
 				var usersLocation = '' + userloc[1] + ', ' + userloc[2] + '';
 				$('.user-info').show();
