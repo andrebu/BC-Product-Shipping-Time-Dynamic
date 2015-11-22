@@ -54,9 +54,9 @@ function currentDateAndTime() {
 // Add current time
 // Add the state to be delivered to
 
-	("United States"==userloc[0]&&userloc[2]?e(this.element).append('<div><span class="free-shipping-time">Place your order within <strong class="time-left green">' + n.hours + " hrs " + n.minutes + ' mins</strong> and get it on <strong class="ship-day">' + i.projectedDeliveryDate(t, userloc[2]).format("dddd, MMMM Do") + '</strong> with <strong class="up-case green">' + i.options.shipMethodName + '</strong>.</span><div class="clear"></div></div>'):e("#shipping-est").remove()),
+	("US"==userloc[0]&&userloc[2]?e(this.element).append('<div><span class="free-shipping-time">Place your order within <strong class="time-left green">' + n.hours + " hrs " + n.minutes + ' mins</strong> and get it on <strong class="ship-day">' + i.projectedDeliveryDate(t, userloc[2]).format("dddd, MMMM Do") + '</strong> with <strong class="up-case green">' + i.options.shipMethodName + '</strong>.</span><div class="clear"></div></div>'):e("#shipping-est").remove()),
 
-	this.options.leadtime&&("United States"==userloc[0]&&userloc[2]?e(i.element).append('<div><span class="two-day-shipping-time">Want it by <strong class="est-delivery">' + i.projectedDeliveryDate(origDeadline, 'twoDays').format("dddd, MMMM Do") + '</strong>? Choose <strong>2 Day Shipping at checkout.</strong></span></div>'):e(".FreeShippingContainer i.sooner").remove())},
+	this.options.leadtime&&("US"==userloc[0]&&userloc[2]?e(i.element).append('<div><span class="two-day-shipping-time">Want it by <strong class="est-delivery">' + i.projectedDeliveryDate(origDeadline, 'twoDays').format("dddd, MMMM Do") + '</strong>? Choose <strong>2 Day Shipping at checkout.</strong></span></div>'):e(".FreeShippingContainer i.sooner").remove())},
 	
 	e.fn.shipTime=function(e){return this.each(function(){new i(this,e)})}}(jQuery);
 	
@@ -152,7 +152,8 @@ function currentDateAndTime() {
 					setTimeout(timedUpdate, 1000);
 				}
 				timedUpdate();
-				if (location.country == 'United States') {
+				//if (location.country == 'United States') {
+				if (location.country == 'US') {
 					$('.user-location span').html(usersLocation);
 				} else {
 					$('.user-location span').html(location.country);
